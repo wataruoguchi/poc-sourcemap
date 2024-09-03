@@ -23,3 +23,15 @@
 ### Attempt 1
 
 When everything is bundled in a single file, the sourcemap is valid (Plan 1 & 2 work).
+
+### Attempt 2
+
+When the code is split into chunks, the sourcemap is valid (Plan 1 & 2 work).
+
+### Attempt 3
+
+When the code is split into chunks, and it has a manifest.json,
+
+### Attempt 4
+
+When the code is split into chunks, it has a manifest.json, and the input file is specified,
