@@ -30,7 +30,7 @@ When the code is split into chunks, the sourcemap is valid (Plan 1 & 2 work).
 
 ### Attempt 3
 
-When the code is split into chunks, and it has a manifest.json,
+When the code is split into chunks, and it has a manifest.json, the sourcemap is valid (Plan 1 & 2 work).
 
 ### Attempt 4
 
