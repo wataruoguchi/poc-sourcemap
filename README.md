@@ -38,3 +38,8 @@ When the code is split into chunks, it has a manifest.json, and the input file i
 
 - index.html is not generated in the `dist` folder. Failed with Plan 1.
 - Sourcemap seems to work.
+
+### Overall
+
+- Sourcemap seems to work with the plans above.
+- However, none of them are valid with [https://sourcemaps.io/](https://sourcemaps.io/)
