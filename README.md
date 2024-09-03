@@ -1,50 +1,25 @@
-# React + TypeScript + Vite
+# PoC - Validate Sourcemaps
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Plans
 
-Currently, two official plugins are available:
+| Plan | Description |
+| --- | --- |
+| 1 | Verify Sourcemaps in the browser |
+| 2 | Validate Sourcemaps with a script |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Plan 1: Verify Sourcemaps in the browser
 
-## Expanding the ESLint configuration
+1. Build the project
+2. Run `npx http-server ./dist`
+3. Open the localhost URL and go to the "Sources" tab in DevTools. You should see the original source code.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Plan 2: Validate Sourcemaps with a script
 
-- Configure the top-level `parserOptions` property like this:
+1. Run `npx source-map-explorer dist/assets/*.js`
+2. Check that the sourcemap is valid.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Attempts
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Attempt 1
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+When everything is bundled in a single file, the sourcemap is valid (Plan 1 & 2 work).
