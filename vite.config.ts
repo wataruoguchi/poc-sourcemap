@@ -16,6 +16,7 @@ export default defineConfig({
         }
       },
       preserveEntrySignatures: 'strict',
+      input: './src/main.tsx',
     },
   },
 })

@@ -35,3 +35,6 @@ When the code is split into chunks, and it has a manifest.json, the sourcemap is
 ### Attempt 4
 
 When the code is split into chunks, it has a manifest.json, and the input file is specified,
+
+- index.html is not generated in the `dist` folder. Failed with Plan 1.
+- Sourcemap seems to work.
