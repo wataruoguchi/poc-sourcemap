@@ -4,9 +4,6 @@ import { defineConfig } from "vite";
 
 const gitVersion = execSync("git rev-parse --short HEAD").toString().trim();
 
-// TODO: This should be given in CI/CD pipelines
-process.env.ROLLBAR_ACCESS_TOKEN_CLIENT = "98873bd1b40b4226aece2bd8df8843b9";
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -15,7 +12,7 @@ export default defineConfig({
     "import.meta.env.VITE_GIT_VERSION": `"${gitVersion}"`,
   },
   build: {
-    sourcemap: true,
+    sourcemap: "hidden",
     // manifest: "manifest.json",
     // rollupOptions: {
     //   output: {
