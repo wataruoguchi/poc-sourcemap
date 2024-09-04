@@ -2,10 +2,10 @@
 
 ## Plans
 
-| Plan | Description |
-| --- | --- |
-| 1 | Verify Sourcemaps in the browser |
-| 2 | Validate Sourcemaps with a script |
+| Plan | Description                       |
+| ---- | --------------------------------- |
+| 1    | Verify Sourcemaps in the browser  |
+| 2    | Validate Sourcemaps with a script |
 
 ### Plan 1: Verify Sourcemaps in the browser
 
