@@ -11,7 +11,10 @@ function App() {
   };
 
   const generateError = () => {
-    throw new Error("Error");
+    const a = null;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    return a.hello();
   };
 
   return (
