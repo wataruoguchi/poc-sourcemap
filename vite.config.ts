@@ -11,6 +11,7 @@ export default defineConfig({
     "import.meta.env.VITE_ROLLBAR_ACCESS_TOKEN_CLIENT": `"${process.env.ROLLBAR_ACCESS_TOKEN_CLIENT ?? ""}"`,
     "import.meta.env.VITE_GIT_VERSION": `"${gitVersion}"`,
   },
+  base: "./",
   build: {
     sourcemap: "hidden",
     // manifest: "manifest.json",
