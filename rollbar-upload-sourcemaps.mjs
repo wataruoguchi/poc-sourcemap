@@ -17,7 +17,7 @@ const isDry = !(process.argv[2] && process.argv[2] == "--non-dry");
 // URL to your minified file without schema
 const minifiedUrlHost = hostName.replace(/https?:/, "");
 
-// Look up against gh-pages branch
+// Look up against gh-pages branch when gitVersion isn't "0"
 const jsFiles = execSync(
   `find ${gitVersion === "0" ? "dist/assets" : "assets"} -name "*.js"`,
 )

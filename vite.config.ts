@@ -14,7 +14,7 @@ export default defineConfig({
   base: "./",
   build: {
     sourcemap: "hidden",
-    // manifest: "manifest.json",
+    manifest: "manifest.json",
     // rollupOptions: {
     //   output: {
     //     manualChunks: (id: string) => {
