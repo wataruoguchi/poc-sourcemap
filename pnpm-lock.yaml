@@ -67,6 +67,9 @@ devDependencies:
   vite:
     specifier: ^5.4.1
     version: 5.4.1(@types/node@22.5.3)
+  vite-plugin-css-injected-by-js:
+    specifier: ^3.5.1
+    version: 3.5.1(vite@5.4.1)
 
 packages:
 
@@ -1965,6 +1968,14 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.3.1
+    dev: true
+
+  /vite-plugin-css-injected-by-js@3.5.1(vite@5.4.1):
+    resolution: {integrity: sha512-9ioqwDuEBxW55gNoWFEDhfLTrVKXEEZgl5adhWmmqa88EQGKfTmexy4v1Rh0pAS6RhKQs2bUYQArprB32JpUZQ==}
+    peerDependencies:
+      vite: '>2.0.0-0'
+    dependencies:
+      vite: 5.4.1(@types/node@22.5.3)
     dev: true
 
   /vite@5.4.1(@types/node@22.5.3):
