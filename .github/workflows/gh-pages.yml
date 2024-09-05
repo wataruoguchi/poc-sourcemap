@@ -44,7 +44,7 @@ jobs:
       - name: Update the gh-pages branch
         run: |
           rm -rf packages node_modules .gitignore index.html
-          cp dist/index.html index.html
+          cp -r dist/* .
           git init
           git checkout -b gh-pages
           git add -A
