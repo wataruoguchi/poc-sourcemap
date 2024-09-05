@@ -52,5 +52,5 @@ jobs:
           git commit -m "Deploy"
           git push -f origin gh-pages
           export ROLLBAR_ACCESS_TOKEN_SERVER=${{ secrets.ROLLBAR_ACCESS_TOKEN_SERVER }}
-          export APP_HOST=https://wataruoguchi.github.io/poc-sourcemap/
+          export APP_HOST=https://wataruoguchi.com/poc-sourcemap/
           ./rollbar-upload-sourcemaps.mjs --non-dry
