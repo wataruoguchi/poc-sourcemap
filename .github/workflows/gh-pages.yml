@@ -43,6 +43,7 @@ jobs:
 
       - name: Update the gh-pages branch
         run: |
+          export GIT_VERSION=$(git rev-parse --short HEAD)
           rm -rf packages node_modules .gitignore index.html
           cp -r dist/* .
           git init
@@ -50,3 +51,6 @@ jobs:
           git add -A
           git commit -m "Deploy"
           git push -f origin gh-pages
+          export ROLLBAR_ACCESS_TOKEN_SERVER=${{ secrets.ROLLBAR_ACCESS_TOKEN_SERVER }}
+          export APP_HOST=https://wataruoguchi.github.io/poc-sourcemap/
+          ./rollbar-upload-sourcemaps.mjs
