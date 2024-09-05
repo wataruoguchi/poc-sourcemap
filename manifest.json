@@ -1,0 +1,22 @@
+{
+  "_vendor-ChNziGN2.js": {
+    "file": "assets/vendor-ChNziGN2.js",
+    "name": "vendor"
+  },
+  "index.html": {
+    "file": "assets/index-wlxbkct0.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_vendor-ChNziGN2.js"
+    ],
+    "assets": [
+      "assets/react-CHdo91hT.svg"
+    ]
+  },
+  "src/assets/react.svg": {
+    "file": "assets/react-CHdo91hT.svg",
+    "src": "src/assets/react.svg"
+  }
+}
