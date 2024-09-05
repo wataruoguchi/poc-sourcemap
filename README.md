@@ -1,45 +1,45 @@
 # PoC - Validate Sourcemaps
 
-## Plans
+This repository is to investigate how Rollbar handles sourcemaps.
 
-| Plan | Description                       |
-| ---- | --------------------------------- |
-| 1    | Verify Sourcemaps in the browser  |
-| 2    | Validate Sourcemaps with a script |
+## Problem 1
 
-### Plan 1: Verify Sourcemaps in the browser
+We attempted to upload a sourcemap to Rollbar with the [Upload Option 2](https://docs.rollbar.com/docs/source-maps#3-upload-your-source-map-files). However, Rollbar did not detect the sourcemap.
 
-1. Build the project
-2. Run `npx http-server ./dist`
-3. Open the localhost URL and go to the "Sources" tab in DevTools. You should see the original source code.
+The resource had the sourcemap URL:
 
-### Plan 2: Validate Sourcemaps with a script
+```js
+//# sourceMappingURL=bundle.js.map
+```
 
-1. Run `npx source-map-explorer dist/assets/*.js`
-2. Check that the sourcemap is valid.
+The resource is delivered via `https://example.com/assets/bundle.js` and the sourcemap is located in the same directory: `https://example.com/assets/bundle.js.map`.
 
-## Attempts
+Loading the sourcemap file directly worked as expected.
 
-### Attempt 1
+## Solution for Problem 1
 
-When everything is bundled in a single file, the sourcemap is valid (Plan 1 & 2 work).
+The [Upload Option 1](https://docs.rollbar.com/docs/source-maps#3-upload-your-source-map-files) with specifying the remote URL to `minified_url` worked. Specifying the local file path did not work.
 
-### Attempt 2
+## Problem 2
 
-When the code is split into chunks, the sourcemap is valid (Plan 1 & 2 work).
+Rollbar reported the following error:
 
-### Attempt 3
+> Possible source map configuration error: line and column number combination not found in source map
 
-When the code is split into chunks, and it has a manifest.json, the sourcemap is valid (Plan 1 & 2 work).
+### Investigation
 
-### Attempt 4
+This is because we used `vite-plugin-css-injected-by-js` to inject CSS into the DOM. This plugin updates the resource file after the sourcemap is generated.
 
-When the code is split into chunks, it has a manifest.json, and the input file is specified,
+## Solution for Problem 2
 
-- index.html is not generated in the `dist` folder. Failed with Plan 1.
-- Sourcemap seems to work.
+Setting the option `{ topExecutionPriority: false }` to the plugin prevented the issue.
 
-### Overall
+## Notes
 
-- Sourcemap seems to work with the plans above.
-- However, none of them are valid with [https://sourcemaps.io/](https://sourcemaps.io/)
+The technical support from Rollbar suggested making sure that the sourcemap is valid with [Source Map Validator](https://sourcemaps.io/). The validator displays errors even when we set the resource path that has a valid (working with Rollbar) sourcemap.
+
+As a second option, we validated the sourcemap with the following command:
+
+```sh
+npx source-map-explore dist/assets/*.js
+```
