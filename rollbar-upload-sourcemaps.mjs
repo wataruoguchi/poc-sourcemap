@@ -2,7 +2,6 @@
 
 import { openAsBlob } from "node:fs";
 import { execSync } from "node:child_process";
-import { resolve } from "node:path";
 
 const hostName = process.env.APP_HOST;
 const accessToken = process.env.ROLLBAR_ACCESS_TOKEN_SERVER;
@@ -15,10 +14,13 @@ if (!hostName || !accessToken || !gitVersion) {
 
 const isDry = !(process.argv[2] && process.argv[2] == "--non-dry");
 
-const relativePath = gitVersion === "0" ? "dist/assets/" : "assets/";
+// URL to your minified file without schema
+const minifiedUrlHost = hostName.replace(/https?:/, "");
 
 // Look up against gh-pages branch
-const jsFiles = execSync(`find ${relativePath} -name "*.js"`)
+const jsFiles = execSync(
+  `find ${gitVersion === "0" ? "dist/assets" : "assets"} -name "*.js"`,
+)
   .toString()
   .split("\n")
   .filter((file) => file.length > 0);
@@ -31,16 +33,17 @@ await Promise.all(jsFiles.map(uploadSourcemap));
  */
 async function uploadSourcemap(jsFile) {
   const blob = await openAsBlob(`${jsFile}.map`);
+  const minifiedUrl = `${minifiedUrlHost}${jsFile}`;
   const form = new FormData();
   form.append("access_token", accessToken);
   form.append("version", gitVersion);
-  form.append("minified_url", `//${resolve(jsFile)}`);
+  form.append("minified_url", minifiedUrl);
   form.append("source_map", blob);
 
   if (isDry) {
     console.log("Dry run: would upload sourcemap for", jsFile, {
       gitVersion,
-      minified_url: `//${resolve(jsFile)}`,
+      minifiedUrl,
     });
     return;
   }
