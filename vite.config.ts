@@ -15,16 +15,16 @@ export default defineConfig({
   build: {
     sourcemap: "hidden",
     manifest: "manifest.json",
-    // rollupOptions: {
-    //   output: {
-    //     manualChunks: (id: string) => {
-    //       if (id.includes('node_modules')) {
-    //         return 'vendor'
-    //       }
-    //     }
-    //   },
-    //   preserveEntrySignatures: 'strict',
-    //   input: './src/main.tsx',
-    // },
+    rollupOptions: {
+      output: {
+        manualChunks: (id: string) => {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+      preserveEntrySignatures: "strict",
+      // input: './src/main.tsx',
+    },
   },
 });
