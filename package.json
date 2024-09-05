@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "npx http-server ./dist",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "upload:dry": "GIT_VERSION=0 node -r dotenv/config ./rollbar-upload-sourcemaps.mjs"
   },
   "dependencies": {
     "@rollbar/react": "0.12.0-beta",
