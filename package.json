@@ -35,8 +35,7 @@
     "prettier": "^3.3.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1",
-    "vite-plugin-css-injected-by-js": "^3.5.1"
+    "vite": "^5.4.1"
   },
   "packageManager": "pnpm@8.6.10+sha1.98fe2755061026799bfa30e7dc8d6d48e9c3edf0"
 }
